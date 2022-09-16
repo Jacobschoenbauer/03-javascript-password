@@ -91,32 +91,33 @@ function writePassword() {
     "Y",
     "Z",
   ];
-//what puts the password out
- var passSymbol=[]
+  //what puts the password out
+  var passwordText = [];
 
- //will place a list of items from the array
- for (var  i = 0; i < nummBer; i++){nummBer[i]= syyBols[i]= upperLetters[i]= lowLetter[i]}
- 
- 
- //what generates the code
- if (doNumbers === true) {
-    passSymbol.push(nummBer);
+  //will place a list of items from the array
+  for (var i = 0; i < nummBer; i++) {
+    nummBer[i] = syyBols[i] = upperLetters[i] = lowLetter[i] = nummBer + 1;
+  }
+
+  //what generates the code
+  if (doNumbers === true) {
+    passwordText.push(nummBer);
   }
   if (doLow === true) {
-    passSymbol.push(lowLetter);
+    passwordText.push(lowLetter);
   }
   if (doUpper === true) {
-    passSymbol.push(upperLetters);
+    passwordText.push(upperLetters);
   }
-  if (doSymbols === true){
-    passSymbol.push(syyBols);
+  if (doSymbols === true) {
+    passwordText.push(syyBols);
   }
 
   var password = generatePassword();
 
   var passwordText = document.querySelector("#password");
 
-  passwordText.value = password;
+  passwordText.value = password();
   return;
 }
 
