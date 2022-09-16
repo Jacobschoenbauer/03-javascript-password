@@ -94,7 +94,11 @@ function writePassword() {
 //what puts the password out
  var passSymbol=[]
 
-  //what generates the code
+ //will place a list of items from the array
+ for (var  i = 0; i < nummBer; i++){nummBer[i]= syyBols[i]= upperLetters[i]= lowLetter[i]}
+ 
+ 
+ //what generates the code
  if (doNumbers === true) {
     passSymbol.push(nummBer);
   }
