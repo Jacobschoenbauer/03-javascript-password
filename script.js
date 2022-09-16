@@ -12,8 +12,14 @@ function writePassword() {
 
     return
   }
+// set extra prompt for other peramitors
   var doNumbers = window.confirm("Would you like numbers?")
-  var doSymbols = window.confirm("Do you want symbols")
+  var doSymbols = window.confirm("Do you want symbols?")
+  var doLow = window.confirm("Would you like lowercase letters?")
+  var doUpper = window.confirm("Would you like uppercase letters?")
+
+  
+
    
   
   
