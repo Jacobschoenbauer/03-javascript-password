@@ -1,8 +1,10 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
+var outputBox = document.querySelector("#password");
+
 // Add event listener to generate button
 generateBtn.addEventListener("click", function (event) {
-  console.log(generatePassword(promptUser()));
+  outputBox.innerText = generatePassword(promptUser());
 });
 
 // Write password to the #password input
@@ -26,9 +28,11 @@ function promptUser(event) {
 }
 
 function generatePassword(userPrompt) {
-  
-  var nummBer = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
-  var syyBols = [
+  const charPool = [];
+  const { doNumbers, doSymbols, doLow, doUpper, passLen } = userPrompt;
+  const number = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+  const outputText = [];
+  const symbols = [
     "!",
     "@",
     "#",
@@ -44,7 +48,7 @@ function generatePassword(userPrompt) {
     "_",
     "-",
   ];
-  var lowLetter = [
+  const lowerLetters = [
     "a",
     "b",
     "c",
@@ -72,7 +76,7 @@ function generatePassword(userPrompt) {
     "y",
     "z",
   ];
-  var upperLetters = [
+  const upperLetters = [
     "A",
     "B",
     "C",
@@ -100,31 +104,22 @@ function generatePassword(userPrompt) {
     "Y",
     "Z",
   ];
-  //what puts the password out
-  var passwordText = [];
 
-  
-  
+  function addToArray(arry, newDataArray) {
+    newDataArray.forEach((item) => {
+      arry.push(item);
+    });
   }
-const charPool
+
   //what generates the code
-  if (userPrompt.doNumbers === true) {
-    charPool.push(nummBer);
-  }
-  if (userPrompt.doLow === true) {
-    charPool.push(lowLetter);
-  }
-  if (userPrompt.doUpper === true) {
-    charPool.push(upperLetters);
-  }
-  if (userPrompt.doSymbols === true) {
-    charPool.push(syyBols);
-  }
+  if (doNumbers) addToArray(charPool, number);
+  if (doLow) addToArray(charPool, lowerLetters);
+  if (doUpper) addToArray(charPool, upperLetters);
+  if (doSymbols) addToArray(charPool, symbols);
 
-  var password = generatePassword();
-
-  var passwordText = document.querySelector("#password");
-
-  passwordText.value = password();
-  return;
+  for (let index = 0; index < passLen; index++) {
+    let randomChar = charPool[Math.floor(Math.random() * charPool.length)];
+    outputText.push(randomChar);
+  }
+  return outputText.join("");
 }
