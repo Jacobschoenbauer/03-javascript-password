@@ -1,23 +1,32 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
+// Add event listener to generate button
+generateBtn.addEventListener("click", function (event) {
+  console.log(generatePassword(promptUser()));
+});
 
 // Write password to the #password input
-function writePassword() {
-  // set prompt for length
-  var passPrompt = window.prompt("How long should the password be ?");
-  var passLen = parseInt(passPrompt);
-  //sets a must have paramiter
-  if (passLen < 8 || passLen > 128) {
-    window.alert("Must be between 8 to 128 charecters");
-
-    return;
+function promptUser(event) {
+  // added a while to set a loop if passLen isnt't met
+  var passLen = 0;
+  while (passLen < 8 || passLen > 128) {
+    var passPrompt = window.prompt("How long should the password be ?");
+    passLen = parseInt(passPrompt);
+    if (passLen < 8 || passLen > 128) {
+      window.alert("Must be between 8 to 128 charecters");
+    }
   }
-  // set extra prompt for other peramitors
-  var doNumbers = window.confirm("Would you like numbers?");
-  var doSymbols = window.confirm("Do you want symbols?");
-  var doLow = window.confirm("Would you like lowercase letters?");
-  var doUpper = window.confirm("Would you like uppercase letters?");
 
+  // set extra prompt for other peramitors
+  const doNumbers = window.confirm("Would you like numbers?");
+  const doSymbols = window.confirm("Do you want symbols?");
+  const doLow = window.confirm("Would you like lowercase letters?");
+  const doUpper = window.confirm("Would you like uppercase letters?");
+  return { doNumbers, doSymbols, doLow, doUpper, passLen };
+}
+
+function generatePassword(userPrompt) {
+  
   var nummBer = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
   var syyBols = [
     "!",
@@ -94,23 +103,22 @@ function writePassword() {
   //what puts the password out
   var passwordText = [];
 
-  //will place a list of items from the array
-  for (var i = 0; i < nummBer; i++) {
-    nummBer[i] = syyBols[i] = upperLetters[i] = lowLetter[i] = nummBer + 1;
+  
+  
   }
-
+const charPool
   //what generates the code
-  if (doNumbers === true) {
-    passwordText.push(nummBer);
+  if (userPrompt.doNumbers === true) {
+    charPool.push(nummBer);
   }
-  if (doLow === true) {
-    passwordText.push(lowLetter);
+  if (userPrompt.doLow === true) {
+    charPool.push(lowLetter);
   }
-  if (doUpper === true) {
-    passwordText.push(upperLetters);
+  if (userPrompt.doUpper === true) {
+    charPool.push(upperLetters);
   }
-  if (doSymbols === true) {
-    passwordText.push(syyBols);
+  if (userPrompt.doSymbols === true) {
+    charPool.push(syyBols);
   }
 
   var password = generatePassword();
@@ -120,6 +128,3 @@ function writePassword() {
   passwordText.value = password();
   return;
 }
-
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
