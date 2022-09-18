@@ -12,11 +12,16 @@ Provide a short description explaining the what, why, and how of your project. U
 
 
 ## Credits
+Assisted by 
+David Schoenbauer
+Chad Kostohryz
 
 
 
 ## Git hub
+https://github.com/Jacobschoenbauer/03-javascript-password
 ## URL
+https://jacobschoenbauer.github.io/03-javascript-password/
 ## Picture
 ![img](Screenshot%202022-09-16%20132647.png)
 
