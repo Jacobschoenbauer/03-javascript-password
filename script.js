@@ -2,11 +2,10 @@
 var generateBtn = document.querySelector("#generate");
 var outputBox = document.querySelector("#password");
 
-// Add event listener to generate button
+// Add event listener to handle button click
 generateBtn.addEventListener("click", function (event) {
- //starts by setting prompt to start generating password
   const userPrompt = promptUser();
- //sets to the function promptUser
+ //sets to the function promptUser its secure
   outputBox.innerText = generatePassword(userPrompt);
 });
 
@@ -17,24 +16,27 @@ function promptUser(event) {
   while (passLen < 8 || passLen > 128) {
     var passPrompt = window.prompt("How long should the password be ?");
     passLen = parseInt(passPrompt);
-    if (passLen < 8 || passLen > 128) {
+   //isNaN for if the length of password is canceled
+    if (passLen < 8 || passLen > 128 || isNaN(passPrompt)) {
       window.alert("Must be between 8 to 128 charecters");
     }
   }
 
-  // set extra prompt for other peramitors
+  // set extra prompt for extra questions
   const doNumbers = window.confirm("Would you like numbers?");
   const doSymbols = window.confirm("Do you want symbols?");
   const doLow = window.confirm("Would you like lowercase letters?");
   const doUpper = window.confirm("Would you like uppercase letters?");
   return { doNumbers, doSymbols, doLow, doUpper, passLen };
 }
-// sets array 
+
 function generatePassword(userPrompt) {
- 
+
   const charPool = [];
+  //sets all varibale from the previous results of the function
   const { doNumbers, doSymbols, doLow, doUpper, passLen } = userPrompt;
   const number = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+  //house the finished text
   const outputText = [];
   const symbols = [
     "!",
@@ -115,7 +117,7 @@ function generatePassword(userPrompt) {
     });
   }
 
-  //what generates the code
+  //what generates the code if statemnets saying if true to add to charPool varible 
   if (doNumbers) addToArray(charPool, number);
   if (doLow) addToArray(charPool, lowerLetters);
   if (doUpper) addToArray(charPool, upperLetters);
@@ -124,10 +126,11 @@ function generatePassword(userPrompt) {
     window.alert("Must Choose a character type");
     return "";
   }
-  // a for loop that pushes 
+  //  randomizes all the all outputs
   for (let index = 0; index < passLen; index++) {
     let randomChar = charPool[Math.floor(Math.random() * charPool.length)];
     outputText.push(randomChar);
   }
+  // without this return it would be undefined
   return outputText.join("");
 }
