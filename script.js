@@ -4,7 +4,10 @@ var outputBox = document.querySelector("#password");
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", function (event) {
-  outputBox.innerText = generatePassword(promptUser());
+ //starts by setting prompt to start generating password
+  const userPrompt = promptUser();
+ //sets to the function promptUser
+  outputBox.innerText = generatePassword(userPrompt);
 });
 
 // Write password to the #password input
@@ -26,8 +29,9 @@ function promptUser(event) {
   const doUpper = window.confirm("Would you like uppercase letters?");
   return { doNumbers, doSymbols, doLow, doUpper, passLen };
 }
-
+// sets array 
 function generatePassword(userPrompt) {
+ 
   const charPool = [];
   const { doNumbers, doSymbols, doLow, doUpper, passLen } = userPrompt;
   const number = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
@@ -116,7 +120,11 @@ function generatePassword(userPrompt) {
   if (doLow) addToArray(charPool, lowerLetters);
   if (doUpper) addToArray(charPool, upperLetters);
   if (doSymbols) addToArray(charPool, symbols);
-
+  if (charPool.length === 0){
+    window.alert("Must Choose a character type");
+    return "";
+  }
+  // a for loop that pushes 
   for (let index = 0; index < passLen; index++) {
     let randomChar = charPool[Math.floor(Math.random() * charPool.length)];
     outputText.push(randomChar);
