@@ -13,11 +13,11 @@ generateBtn.addEventListener("click", function (event) {
 function promptUser(event) {
   // added a while to set a loop if passLen isnt't met
   var passLen = 0;
-  while (passLen < 8 || passLen > 128 || isNaN(passPrompt)) {
+  while (passLen < 8 || passLen > 128 || isNaN(passLen)) {
     var passPrompt = window.prompt("How long should the password be ?");
     passLen = parseInt(passPrompt);
    //isNaN for if the length of password is canceled
-    if (passLen < 8 || passLen > 128 || isNaN(passPrompt)) {
+    if (passLen < 8 || passLen > 128 || isNaN(passLen)) {
       window.alert("Must be between 8 to 128 charecters");
     }
   }
